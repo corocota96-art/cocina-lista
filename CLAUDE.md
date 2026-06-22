@@ -3,19 +3,18 @@
 Blog de afiliación sobre cocina práctica y freidora de aire. Astro + GitHub Pages.
 Nicho: cocina fácil / air fryer, en español, afiliación **Amazon.es**.
 
-## Estado actual (2026-06-21)
-- Proyecto creado y funcional en local. **Aún NO desplegado ni subido a GitHub.**
-- 1 artículo real publicado: `freidora-aire-principiantes.mdx`.
+## Estado actual (2026-06-23)
+- **LIVE**: https://corocota96-art.github.io/cocina-lista/ (repo público, deploy automático con Node 22).
+- 6 artículos publicados sobre freidora de aire.
 - Páginas legales completas (aviso legal, privacidad, cookies, afiliados).
-- Componentes de afiliado listos (botón con `rel="sponsored nofollow"` y fichas de producto).
+- Componentes de afiliado (botón con `rel="sponsored nofollow"` y fichas de producto).
+- SEO: datos estructurados JSON-LD (WebSite/Organization/Person/BlogPosting/BreadcrumbList), breadcrumbs visuales, firma de autor, artículos relacionados, alt en imágenes.
 
 ## PENDIENTE CRÍTICO (para que genere dinero)
-1. **Registrarse en Amazon Afiliados** → associates.amazon.es (gratis).
-2. **Sustituir el tag** `cocinalista-21` por el real en `src/consts.ts` (constante `AMAZON_TAG`).
-3. **Crear el repo en GitHub** (`cocina-lista`, público) y subir el código.
-4. **Activar GitHub Pages**: Settings → Pages → Source = "GitHub Actions".
-5. ⚠️ Amazon **cierra la cuenta si no haces 3 ventas en 180 días** desde el alta. No te registres hasta tener algo de tráfico, o aprovecha ese plazo.
-6. Revisar datos personales públicos en `src/consts.ts` (`OWNER_NAME`, `OWNER_EMAIL`).
+1. **Google Search Console** (lo más importante para tener tráfico): alta del sitio como propiedad "Prefijo de la URL" = `https://corocota96-art.github.io/cocina-lista/`, método "Etiqueta HTML", pegar el código en `GOOGLE_SITE_VERIFICATION` (`consts.ts`) y enviar el sitemap (`sitemap-index.xml`).
+2. **Registrarse en Amazon Afiliados** (associates.amazon.es) y sustituir el tag `cocinalista-21` en `consts.ts`. ⚠️ Amazon cierra la cuenta si no hay 3 ventas en 180 días → hacerlo cuando haya algo de tráfico.
+3. Revisar datos personales públicos en `consts.ts` (`OWNER_NAME`, `OWNER_EMAIL`).
+4. Más artículos con el tiempo (objetivo 15-30). Opcional después: Pinterest enlazando a los posts (cadencia humana).
 
 ## Cómo añadir un artículo nuevo
 1. Crea un archivo en `src/content/blog/` con extensión `.md` (texto simple) o `.mdx` (si lleva fichas de producto).
