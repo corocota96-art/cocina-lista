@@ -1,0 +1,132 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { withBase } from '../lib/links';
+
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, 6);
+---
+
+<!doctype html>
+<html lang="es">
+	<head>
+		<BaseHead
+			title={`${SITE_TITLE} · Recetas y trucos de cocina fáciles`}
+			description={SITE_DESCRIPTION}
+		/>
+		<style>
+			.hero {
+				text-align: center;
+				padding: 1.5em 0 2em;
+			}
+			.hero h1 {
+				font-size: 2.6em;
+				margin-bottom: 0.3em;
+			}
+			.lead {
+				font-size: 1.15em;
+				color: rgb(var(--gray-dark));
+				max-width: 600px;
+				margin: 0 auto 1.2em;
+			}
+			.cta {
+				display: inline-block;
+				background: var(--accent);
+				color: #fff;
+				padding: 0.7em 1.5em;
+				border-radius: 999px;
+				font-weight: 700;
+				text-decoration: none;
+			}
+			.cta:hover {
+				background: var(--accent-dark);
+				color: #fff;
+			}
+			.ultimos h2 {
+				border-bottom: 2px solid rgb(var(--gray-light));
+				padding-bottom: 0.3em;
+				margin-bottom: 1em;
+			}
+			.post-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 2rem;
+				list-style: none;
+				margin: 0;
+				padding: 0;
+			}
+			.post-grid li a {
+				display: block;
+				text-decoration: none;
+				color: inherit;
+				transition: 0.2s ease;
+			}
+			.post-grid img {
+				margin-bottom: 0.5rem;
+				border-radius: 12px;
+			}
+			.post-grid h3 {
+				margin: 0;
+				line-height: 1.2;
+			}
+			.post-grid .date {
+				margin: 0.2em 0 0;
+				color: rgb(var(--gray));
+				font-size: 0.9em;
+			}
+			.post-grid li a:hover h3 {
+				color: var(--accent);
+			}
+			.post-grid li a:hover img {
+				box-shadow: var(--box-shadow);
+			}
+			@media (max-width: 720px) {
+				.hero h1 {
+					font-size: 2em;
+				}
+				.post-grid {
+					grid-template-columns: 1fr;
+					gap: 1.5rem;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<section class="hero">
+				<h1>Cocina rica sin complicarte la vida 🍳</h1>
+				<p class="lead">{SITE_DESCRIPTION}</p>
+				<a class="cta" href={withBase('blog')}>Ver todas las recetas →</a>
+			</section>
+
+			<section class="ultimos">
+				<h2>Últimos artículos</h2>
+				<ul class="post-grid">
+					{
+						posts.map((post) => (
+							<li>
+								<a href={withBase(`blog/${post.id}/`)}>
+									{post.data.heroImage && (
+										<Image width={600} height={300} src={post.data.heroImage} alt="" />
+									)}
+									<h3>{post.data.title}</h3>
+									<p class="date">
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+								</a>
+							</li>
+						))
+					}
+				</ul>
+			</section>
+		</main>
+		<Footer />
+	</body>
+</html>

@@ -1,0 +1,93 @@
+---
+import AffiliateButton from './AffiliateButton.astro';
+
+interface Props {
+	name: string;
+	asin?: string;
+	search?: string;
+	href?: string;
+	price?: string;
+	rating?: string;
+	badge?: string;
+	description?: string;
+	pros?: string[];
+	label?: string;
+}
+
+const { name, asin, search, href, price, rating, badge, description, pros = [], label } =
+	Astro.props;
+---
+
+<div class="producto">
+	{badge && <span class="producto-badge">{badge}</span>}
+	<h3 class="producto-nombre">{name}</h3>
+	<div class="producto-meta">
+		{rating && <span class="producto-rating">⭐ {rating}</span>}
+		{price && <span class="producto-precio">{price}</span>}
+	</div>
+	{description && <p class="producto-desc">{description}</p>}
+	{
+		pros.length > 0 && (
+			<ul class="producto-pros">
+				{pros.map((p) => (
+					<li>{p}</li>
+				))}
+			</ul>
+		)
+	}
+	<AffiliateButton href={href} asin={asin} search={search} label={label} />
+</div>
+<style>
+	.producto {
+		position: relative;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 12px;
+		padding: 1.25em 1.25em 1.5em;
+		margin: 2em 0;
+		box-shadow: 0 2px 8px rgba(var(--gray), 12%);
+		background: #fff;
+	}
+	.producto-badge {
+		display: inline-block;
+		background: var(--accent);
+		color: #fff;
+		font-size: 0.7em;
+		font-weight: 700;
+		text-transform: uppercase;
+		letter-spacing: 0.03em;
+		padding: 0.3em 0.8em;
+		border-radius: 999px;
+		margin-bottom: 0.4em;
+	}
+	.producto-nombre {
+		margin: 0.2em 0 0.3em;
+		font-size: 1.3em;
+	}
+	.producto-meta {
+		display: flex;
+		gap: 1em;
+		color: rgb(var(--gray));
+		margin-bottom: 0.5em;
+		font-size: 0.95em;
+	}
+	.producto-precio {
+		font-weight: 700;
+		color: rgb(var(--gray-dark));
+	}
+	.producto-desc {
+		margin: 0.3em 0 0.8em;
+	}
+	.producto-pros {
+		list-style: none;
+		padding-left: 0;
+		margin: 0 0 1.2em;
+	}
+	.producto-pros li {
+		margin-bottom: 0.3em;
+	}
+	.producto-pros li::before {
+		content: '✓ ';
+		color: var(--accent);
+		font-weight: 700;
+	}
+</style>

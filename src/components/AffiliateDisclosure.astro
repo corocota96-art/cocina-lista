@@ -1,0 +1,26 @@
+---
+import { withBase } from '../lib/links';
+---
+
+<aside class="afiliado-aviso">
+	<p>
+		🛒 <strong>Transparencia:</strong> este artículo incluye enlaces de afiliado. Si compras a través
+		de ellos puedo llevarme una pequeña comisión <strong>sin que a ti te cueste nada más</strong>.
+		Como Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos
+		aplicables. <a href={withBase('afiliados')}>Más información</a>.
+	</p>
+</aside>
+<style>
+	.afiliado-aviso {
+		background: rgba(var(--gray-light), 60%);
+		border: 1px solid rgb(var(--gray-light));
+		border-left: 4px solid var(--accent);
+		border-radius: 8px;
+		padding: 0.75em 1em;
+		margin: 0 0 2em;
+		font-size: 0.9em;
+	}
+	.afiliado-aviso p {
+		margin: 0;
+	}
+</style>

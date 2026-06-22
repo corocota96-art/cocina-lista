@@ -1,0 +1,52 @@
+---
+import { SITE_TITLE, OWNER_NAME } from '../consts';
+import { withBase } from '../lib/links';
+
+const today = new Date();
+---
+
+<footer>
+	<nav class="footer-links">
+		<a href={withBase('aviso-legal')}>Aviso legal</a>
+		<a href={withBase('privacidad')}>Privacidad</a>
+		<a href={withBase('cookies')}>Cookies</a>
+		<a href={withBase('afiliados')}>Afiliados</a>
+	</nav>
+	<p class="disclosure">
+		Como Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos
+		aplicables.
+	</p>
+	<p class="copy">&copy; {today.getFullYear()} {SITE_TITLE} · {OWNER_NAME}</p>
+</footer>
+<style>
+	footer {
+		padding: 2.5em 1em 4em 1em;
+		background: linear-gradient(var(--gray-gradient)) no-repeat;
+		color: rgb(var(--gray));
+		text-align: center;
+		font-size: 0.95em;
+	}
+	.footer-links {
+		display: flex;
+		justify-content: center;
+		flex-wrap: wrap;
+		gap: 0.5em 1.5em;
+		margin-bottom: 1em;
+	}
+	.footer-links a {
+		color: rgb(var(--gray-dark));
+		text-decoration: none;
+	}
+	.footer-links a:hover {
+		color: var(--accent);
+	}
+	.disclosure {
+		max-width: 600px;
+		margin: 0 auto 1em;
+		font-size: 0.85em;
+		font-style: italic;
+	}
+	.copy {
+		margin: 0;
+	}
+</style>

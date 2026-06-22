@@ -1,0 +1,40 @@
+---
+import Layout from '../layouts/Page.astro';
+import { withBase } from '../lib/links';
+---
+
+<Layout
+	title="Sobre mí"
+	description="Quién está detrás de Cocina Lista y por qué este blog te puede ayudar a cocinar mejor."
+>
+	<p>
+		¡Hola! Soy Javi y <strong>Cocina Lista</strong> nace de algo muy sencillo: me gusta comer bien
+		sin pasarme media vida en la cocina. Con el trabajo, las prisas y las ganas de cero
+		complicaciones, acabé tirando mucho de la <strong>freidora de aire</strong> y de un puñado de
+		trucos que me hacen la vida más fácil.
+	</p>
+
+	<p>
+		Aquí comparto exactamente eso: recetas que salen a la primera, guías para sacarle partido a los
+		electrodomésticos que ya tienes en casa y recomendaciones honestas de los utensilios que de
+		verdad merecen la pena (y los que no).
+	</p>
+
+	<h2>Cómo se mantiene este blog</h2>
+	<p>
+		Algunos artículos incluyen enlaces de afiliado a Amazon. Si compras algo a través de ellos, me
+		llevo una pequeña comisión <strong>sin que a ti te cueste ni un céntimo más</strong>. Eso me
+		ayuda a seguir escribiendo y a mantener el blog gratis y sin publicidad invasiva.
+	</p>
+	<p>
+		Mi compromiso: recomendarte solo cosas que usaría yo mismo. Puedes leer los detalles en la <a
+			href={withBase('afiliados')}>política de afiliados</a
+		>.
+	</p>
+
+	<h2>¿Hablamos?</h2>
+	<p>
+		Si tienes una duda, una sugerencia o quieres que escriba sobre algo en concreto, escríbeme. Las
+		mejores ideas para el blog siempre vienen de quien lo lee.
+	</p>
+</Layout>

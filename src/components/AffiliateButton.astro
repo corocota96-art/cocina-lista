@@ -1,0 +1,36 @@
+---
+import { amazonProduct, amazonSearch } from '../lib/links';
+
+interface Props {
+	href?: string;
+	asin?: string;
+	search?: string;
+	label?: string;
+}
+
+const { href, asin, search, label = 'Ver precio en Amazon' } = Astro.props;
+const link = href ?? (asin ? amazonProduct(asin) : search ? amazonSearch(search) : '#');
+---
+
+<a class="afiliado-btn" href={link} target="_blank" rel="nofollow sponsored noopener">
+	{label}
+	<span aria-hidden="true">→</span>
+</a>
+<style>
+	.afiliado-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.4em;
+		background: var(--accent);
+		color: #fff;
+		padding: 0.6em 1.3em;
+		border-radius: 999px;
+		font-weight: 700;
+		text-decoration: none;
+		transition: background 0.2s ease;
+	}
+	.afiliado-btn:hover {
+		background: var(--accent-dark);
+		color: #fff;
+	}
+</style>

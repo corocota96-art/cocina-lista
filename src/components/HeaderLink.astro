@@ -1,0 +1,29 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { withBase } from '../lib/links';
+
+type Props = HTMLAttributes<'a'>;
+
+const { href, class: className, ...props } = Astro.props;
+const target = withBase(href as string);
+
+const norm = (p: string) => p.replace(/\/+$/, '') || '/';
+const current = norm(Astro.url.pathname);
+const t = norm(target);
+const base = norm(withBase('/'));
+const isActive = current === t || (t !== base && current.startsWith(t + '/'));
+---
+
+<a href={target} class:list={[className, { active: isActive }]} {...props}>
+	<slot />
+</a>
+<style>
+	a {
+		display: inline-block;
+		text-decoration: none;
+	}
+	a.active {
+		font-weight: bolder;
+		text-decoration: underline;
+	}
+</style>
